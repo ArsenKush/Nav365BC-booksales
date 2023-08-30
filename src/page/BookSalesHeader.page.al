@@ -30,7 +30,7 @@ page 50100 BookSalesHeader
                 {
                     ToolTip = 'Specifies the value of the Payment  field.';
                 }
-                field("Document data"; Rec."Document data")
+                field("Document data"; Rec."Document Date")
                 {
                     ToolTip = 'Specifies the value of the Document data field.';
                 }

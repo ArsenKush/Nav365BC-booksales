@@ -31,9 +31,9 @@ table 50100 BookSalesHeader
         {
             Caption = 'Payment ';
         }
-        field(13; "Document data"; DateTime)
+        field(13; "Document Date"; DateTime)
         {
-            Caption = 'Document data';
+            Caption = 'Document Date';
         }
         field(14; Status; Enum BookSalesStatus)
         {
@@ -47,4 +47,15 @@ table 50100 BookSalesHeader
             Clustered = true;
         }
     }
+
+    trigger OnInsert()
+    begin
+        SetDate();
+    end;
+
+    local procedure SetDate()
+    begin
+        "Document Date" := CurrentDateTime;
+    end;
+
 }

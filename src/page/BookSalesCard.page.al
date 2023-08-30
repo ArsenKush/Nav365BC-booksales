@@ -29,7 +29,7 @@ page 50101 BookSalesCard
                 {
                     ToolTip = 'Specifies the value of the Payment  field.';
                 }
-                field("Document data"; Rec."Document data")
+                field("Document data"; Rec."Document Date")
                 {
                     ToolTip = 'Specifies the value of the Document data field.';
                 }
@@ -45,4 +45,53 @@ page 50101 BookSalesCard
             }
         }
     }
+
+
+    actions
+    {
+        area(Processing)
+        {
+            action(Release)
+            {
+                ApplicationArea = All;
+                Caption = 'Release';
+                Image = ReleaseDoc;
+
+                trigger OnAction()
+                begin
+                    ReleaseOnPage();
+                end;
+            }
+
+            action(Reopen)
+            {
+                ApplicationArea = All;
+                Caption = 'Reopen';
+                Image = ReOpen;
+
+                trigger OnAction()
+                begin
+                    OpenOnPage();
+                end;
+            }
+
+        }
+    }
+
+
+    var
+        BookLibrary: Codeunit BookLibrary;
+
+    local procedure ReleaseOnPage()
+    begin
+        BookLibrary.Release(Rec);
+    end;
+
+    local procedure OpenOnPage()
+    begin
+        BookLibrary.Reopen(Rec);
+    end;
+
+
+
 }

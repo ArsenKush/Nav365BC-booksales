@@ -2,16 +2,12 @@ enum 50100 BookSalesStatus
 {
     Extensible = true;
 
-    value(0; Draft)
+    value(0; Open)
     {
-        Caption = 'Draft';
+        Caption = 'Open';
     }
-    value(1; Active)
+    value(1; Release)
     {
-        Caption = 'Active';
-    }
-    value(2; Disable)
-    {
-        Caption = 'Disable';
+        Caption = 'Release';
     }
 }
