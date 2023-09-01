@@ -25,7 +25,7 @@ page 50101 BookSalesCard
                 {
                     ToolTip = 'Specifies the value of the Customer Name field.';
                 }
-                field("Payment "; Rec."Payment ")
+                field("Payment "; Rec."Payment")
                 {
                     ToolTip = 'Specifies the value of the Payment  field.';
                 }
@@ -49,6 +49,21 @@ page 50101 BookSalesCard
 
     actions
     {
+        area(Promoted)
+        {
+            group(Category_Category5)
+            {
+                Caption = 'Release', Comment = 'Generated from the PromotedActionCategories property index 4.';
+                ShowAs = SplitButton;
+
+                actionref(Release_Promoted; Release)
+                {
+                }
+                actionref(Reopen_Promoted; Reopen)
+                {
+                }
+            }
+        }
         area(Processing)
         {
             action(Release)
@@ -76,6 +91,23 @@ page 50101 BookSalesCard
             }
 
         }
+        area(Reporting)
+        {
+            action(PrintOrder)
+            {
+                Caption = 'Print Order';
+                RunObject = report BookSalesOrder;
+            }
+
+            action(PrintOrder2)
+            {
+                Caption = 'Print Order2';
+                trigger OnAction()
+                begin
+                    Report.Run(Report::BookSalesOrder);
+                end;
+            }
+        }
     }
 
 
@@ -90,6 +122,11 @@ page 50101 BookSalesCard
     local procedure OpenOnPage()
     begin
         BookLibrary.Reopen(Rec);
+    end;
+
+    trigger OnOpenPage()
+    begin
+        // Report.Run(Report::"ReceiptBankList")
     end;
 
 
