@@ -27,9 +27,9 @@ table 50100 BookSalesHeader
             Caption = 'Customer Name';
         }
 
-        field(12; "Payment "; Boolean)
+        field(12; "Payment"; Boolean)
         {
-            Caption = 'Payment ';
+            Caption = 'Payment';
         }
         field(13; "Document Date"; DateTime)
         {

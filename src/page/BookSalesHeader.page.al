@@ -26,7 +26,7 @@ page 50100 BookSalesHeader
                 {
                     ToolTip = 'Specifies the value of the Customer Name field.';
                 }
-                field("Payment "; Rec."Payment ")
+                field("Payment "; Rec."Payment")
                 {
                     ToolTip = 'Specifies the value of the Payment  field.';
                 }
