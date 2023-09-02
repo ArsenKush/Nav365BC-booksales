@@ -641,6 +641,24 @@ End Function
         <Field Name="LineQuantityFormat">
           <DataField>LineQuantityFormat</DataField>
         </Field>
+        <Field Name="LinePrice">
+          <DataField>LinePrice</DataField>
+        </Field>
+        <Field Name="LinePriceFormat">
+          <DataField>LinePriceFormat</DataField>
+        </Field>
+        <Field Name="LineDiscount">
+          <DataField>LineDiscount</DataField>
+        </Field>
+        <Field Name="LineDiscountFormat">
+          <DataField>LineDiscountFormat</DataField>
+        </Field>
+        <Field Name="LineAmount">
+          <DataField>LineAmount</DataField>
+        </Field>
+        <Field Name="LineAmountFormat">
+          <DataField>LineAmountFormat</DataField>
+        </Field>
       </Fields>
       <Query>
         <DataSourceName>DataSource</DataSourceName>

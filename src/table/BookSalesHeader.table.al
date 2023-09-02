@@ -39,6 +39,12 @@ table 50100 BookSalesHeader
         {
             Caption = 'Status';
         }
+        field(15; TotalAmount; Decimal)
+        {
+            Caption = 'Total Amount';
+            FieldClass = FlowField;
+            CalcFormula = sum(BookSalesLine."Line Amount" where("Order No." = field("Order No.")));
+        }
     }
     keys
     {

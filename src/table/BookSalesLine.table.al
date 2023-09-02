@@ -30,9 +30,34 @@ table 50101 BookSalesLine
         {
             Caption = 'Item Name';
         }
-        field(12; Quantity; Decimal)
+        field(35; "Price"; Decimal)
+        {
+            Caption = 'Price';
+            trigger OnValidate()
+            begin
+                CalcTotalAmount();
+            end;
+        }
+        field(13; Quantity; Decimal)
         {
             Caption = 'Quantity';
+            trigger OnValidate()
+            begin
+                CalcTotalAmount();
+            end;
+        }
+        field(14; "Discount %"; Decimal)
+        {
+            Caption = 'Discount %';
+            trigger OnValidate()
+            begin
+                CalcTotalAmount();
+            end;
+        }
+        field(15; "Line Amount"; Decimal)
+        {
+            Editable = false;
+            Caption = 'Line Amount';
         }
     }
     keys
@@ -43,6 +68,7 @@ table 50101 BookSalesLine
         }
 
     }
+
     trigger OnInsert()
     var
         BookSalesLine: Record BookSalesLine;
@@ -56,5 +82,10 @@ table 50101 BookSalesLine
                 Rec."Line No." := 10000;
         end;
 
+    end;
+
+    procedure CalcTotalAmount()
+    begin
+        "Line Amount" := Price * Quantity * (1 - ("Discount %" / 100));
     end;
 }
