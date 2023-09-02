@@ -1,7 +1,7 @@
-page 50100 BookSalesHeader
+page 50100 BookSalesOrders
 {
     ApplicationArea = All;
-    Caption = 'Book Sales Header';
+    Caption = 'Book Sales Orders';
     PageType = List;
     SourceTable = BookSalesHeader;
     UsageCategory = Documents;
@@ -20,7 +20,6 @@ page 50100 BookSalesHeader
                 field("Customer No."; Rec."Customer No.")
                 {
                     ToolTip = 'Specifies the value of the Customer No. field.';
-
                 }
                 field("Customer Name"; Rec."Customer Name")
                 {

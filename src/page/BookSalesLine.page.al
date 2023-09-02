@@ -31,10 +31,25 @@ page 50102 BookSalesLine
                     Editable = false;
                     ToolTip = 'Specifies the value of the Item Name field.';
                 }
-                field(Quantity; Rec.Quantity)
+                field(Price; Rec."Price")
+                {
+                    ToolTip = 'Specifies the value of the Price field.';
+                }
+                field(Quantity; Rec."Quantity")
                 {
                     ToolTip = 'Specifies the value of the Quantity field.';
                 }
+                field("Discount%"; Rec."Discount %")
+                {
+                    Caption = 'Discount %';
+                    ToolTip = 'Specifies the value of the Discount % field.';
+                }
+                field(LineAmount; Rec."Line Amount")
+                {
+                    Caption = 'Line Amount';
+                    ToolTip = 'Specifies the value of the Line Amount field.';
+                }
+
             }
         }
     }

@@ -43,6 +43,12 @@ report 50100 BookSalesOrder
                 { }
                 column(LineQuantity; Quantity)
                 { }
+                column(LinePrice; Price)
+                { }
+                column(LineDiscount; "Discount %")
+                { }
+                column(LineAmount; "Line Amount")
+                { }
             }
         }
 

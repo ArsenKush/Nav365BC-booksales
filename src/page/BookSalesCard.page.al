@@ -43,6 +43,14 @@ page 50101 BookSalesCard
                 Caption = 'Book Sales Line';
                 SubPageLink = "Order No." = field("Order No.");
             }
+            group(Totals)
+            {
+                field(TotalAmount; Rec.TotalAmount)
+                {
+                    Caption = 'Total Amount';
+                }
+
+            }
         }
     }
 
@@ -126,9 +134,18 @@ page 50101 BookSalesCard
 
     trigger OnOpenPage()
     begin
-        // Report.Run(Report::"ReceiptBankList")
+
     end;
 
+    trigger OnAfterGetRecord()
+    begin
+        Rec.CalcFields(TotalAmount);
+        // CurrPage.Update();
+    end;
 
-
+    trigger OnAfterGetCurrRecord()
+    begin
+        Rec.CalcFields(TotalAmount);
+        // CurrPage.Update();
+    end;
 }
