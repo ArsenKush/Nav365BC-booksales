@@ -5,7 +5,7 @@ table 50101 BookSalesLine
 
     fields
     {
-        field(1; "Order No."; Code[10])
+        field(1; "Order No."; Code[20])
         {
             Caption = 'Order No.';
         }

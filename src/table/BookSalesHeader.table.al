@@ -5,7 +5,7 @@ table 50100 BookSalesHeader
 
     fields
     {
-        field(1; "Order No."; Code[10])
+        field(1; "Order No."; Code[20])
         {
             Caption = 'Order No.';
         }
@@ -45,6 +45,12 @@ table 50100 BookSalesHeader
             FieldClass = FlowField;
             CalcFormula = sum(BookSalesLine."Line Amount" where("Order No." = field("Order No.")));
         }
+        field(107; "No. Series"; Code[20])
+        {
+            Caption = 'No. Series';
+            TableRelation = "No. Series";
+            DataClassification = SystemMetadata;
+        }
     }
     keys
     {
@@ -56,12 +62,24 @@ table 50100 BookSalesHeader
 
     trigger OnInsert()
     begin
+        SetOrderNo();
         SetDate();
+    end;
+
+    local procedure SetOrderNo()
+    var
+        BookOrderSetup: Record BookOrderSetup;
+        NoSeriesManagement: Codeunit NoSeriesManagement;
+    begin
+        if "Order No." = '' then begin
+            BookOrderSetup.SafeGet();
+            BookOrderSetup.TestField("Book Order Nos.");
+            NoSeriesManagement.InitSeries(BookOrderSetup."Book Order Nos.", xRec."No. Series", 0D, "Order No.", "No. Series");
+        end;
     end;
 
     local procedure SetDate()
     begin
         "Document Date" := CurrentDateTime;
     end;
-
 }

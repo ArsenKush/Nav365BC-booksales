@@ -2,7 +2,7 @@ report 50100 BookSalesOrder
 {
     ApplicationArea = All;
     Caption = 'BookSalesOrder';
-    UsageCategory = ReportsAndAnalysis;
+    UsageCategory = None;
     DefaultLayout = "RDLC";
     RDLCLayout = './src/layout/BookSalesOrder.rdl';
 
