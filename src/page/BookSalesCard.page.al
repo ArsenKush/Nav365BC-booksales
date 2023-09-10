@@ -20,22 +20,53 @@ page 50101 BookSalesCard
                 field("Customer No."; Rec."Customer No.")
                 {
                     ToolTip = 'Specifies the value of the Customer No. field.';
+                    Importance = Promoted;
                 }
                 field("Customer Name"; Rec."Customer Name")
                 {
                     ToolTip = 'Specifies the value of the Customer Name field.';
+                    Importance = Promoted;
+
                 }
                 field("Payment "; Rec."Payment")
                 {
                     ToolTip = 'Specifies the value of the Payment  field.';
+                    Importance = Additional;
+
                 }
                 field("Document data"; Rec."Document Date")
                 {
                     ToolTip = 'Specifies the value of the Document data field.';
+                    Importance = Additional;
+
+
                 }
                 field(Status; Rec.Status)
                 {
                     ToolTip = 'Specifies the value of the Status field.';
+                }
+
+                group("Sell-to")
+                {
+                    Caption = 'Sell-to';
+                    field("Ship-to Address"; Rec."Ship-to Adress")
+                    {
+                        ApplicationArea = Basic, Suite;
+                        Caption = 'Address';
+                        Importance = Additional;
+                        QuickEntry = false;
+                        ToolTip = 'Specifies the address where the customer is located.';
+                    }
+                    field(City; Rec.City)
+                    {
+                        ToolTip = 'Specifies the value of the City field.';
+                        Importance = Additional;
+                    }
+                    field("Phone Number"; Rec."Phone Number")
+                    {
+                        ToolTip = 'Specifies the value of the Phone Number data field.';
+                        Importance = Additional;
+                    }
                 }
             }
             part(PartName; BookSalesLine)
@@ -74,6 +105,17 @@ page 50101 BookSalesCard
         }
         area(Processing)
         {
+            action(Posting)
+            {
+                ApplicationArea = All;
+
+                trigger OnAction()
+                var
+                    BookPosting: Codeunit BookPosting;
+                begin
+                    BookPosting.PostBookSalesHeader(Rec);
+                end;
+            }
             action(Release)
             {
                 ApplicationArea = All;

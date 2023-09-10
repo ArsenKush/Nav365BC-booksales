@@ -1,33 +1,23 @@
-table 50100 BookSalesHeader
+table 50105 BookPostedSalesShipmentHeader
 {
-    Caption = 'Book Sales Header';
+    Caption = ' Book Posted Sales Shipment Header';
     DataClassification = CustomerContent;
 
     fields
     {
-        field(1; "Order No."; Code[20])
+        field(1; "Shipment No."; Code[20])
         {
-            Caption = 'Order No.';
+            Caption = 'Shipment No.';
         }
         field(10; "Customer No."; Code[20])
         {
             Caption = 'Customer No.';
-            TableRelation = Customer."No.";
-
-            trigger OnValidate()
-            var
-                Customer: Record Customer;
-            begin
-                Customer.Get("Customer No.");
-                "Customer Name" := Customer.Name;
-            end;
         }
         field(11; "Customer Name"; Text[100])
         {
             Caption = 'Customer Name';
         }
-
-        field(12; "Payment"; Boolean)
+        field(12; Payment; Boolean)
         {
             Caption = 'Payment';
         }
@@ -39,18 +29,13 @@ table 50100 BookSalesHeader
         {
             Caption = 'Status';
         }
-        field(15; TotalAmount; Decimal)
+        field(15; "Total Amount"; Decimal)
         {
-            // AutoFormatExpression = "Currency Code";
-            AutoFormatType = 1;
             Caption = 'Total Amount';
-            Editable = false;
-            FieldClass = FlowField;
-            CalcFormula = sum(BookSalesLine."Line Amount" where("Order No." = field("Order No.")));
         }
         field(16; "Ship-to Adress"; Text[100])
         {
-            Caption = 'Ship to Address';
+            Caption = 'Ship-to Adress';
         }
         field(17; City; Text[100])
         {
@@ -60,18 +45,18 @@ table 50100 BookSalesHeader
         {
             Caption = 'Phone Number';
         }
-
-
+        field(19; "Order No."; Code[20])
+        {
+            Caption = 'Order No.';
+        }
         field(107; "No. Series"; Code[20])
         {
             Caption = 'No. Series';
-            TableRelation = "No. Series";
-            DataClassification = SystemMetadata;
         }
     }
     keys
     {
-        key(PK; "Order No.")
+        key(PK; "Shipment No.")
         {
             Clustered = true;
         }
@@ -80,7 +65,6 @@ table 50100 BookSalesHeader
     trigger OnInsert()
     begin
         SetOrderNo();
-        SetDate();
     end;
 
     local procedure SetOrderNo()
@@ -88,17 +72,10 @@ table 50100 BookSalesHeader
         BookOrderSetup: Record BookOrderSetup;
         NoSeriesManagement: Codeunit NoSeriesManagement;
     begin
-        if "Order No." = '' then begin
+        if "Shipment No." = '' then begin
             BookOrderSetup.SafeGet();
-            BookOrderSetup.TestField("Book Order Nos.");
-            NoSeriesManagement.InitSeries(BookOrderSetup."Book Order Nos.", xRec."No. Series", 0D, "Order No.", "No. Series");
+            BookOrderSetup.TestField("Book Shipment Nos.");
+            NoSeriesManagement.InitSeries(BookOrderSetup."Book Shipment Nos.", xRec."No. Series", 0D, "Shipment No.", "No. Series");
         end;
-    end;
-
-
-
-    local procedure SetDate()
-    begin
-        "Document Date" := CurrentDateTime;
     end;
 }
