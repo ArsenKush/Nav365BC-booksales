@@ -2,6 +2,8 @@ table 50101 BookSalesLine
 {
     Caption = 'Book Sales Line';
     DataClassification = CustomerContent;
+    LookupPageId = BookSalesLine;
+    DrillDownPageId = BookSalesLine;
 
     fields
     {

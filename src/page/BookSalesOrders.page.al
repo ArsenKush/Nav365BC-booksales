@@ -25,6 +25,11 @@ page 50100 BookSalesOrders
                 {
                     ToolTip = 'Specifies the value of the Customer Name field.';
                 }
+                field("TotalAmount"; Rec.TotalAmount)
+                {
+                    Caption = 'Total Amount';
+                    ToolTip = 'Specifies the value of the Total Amount field.';
+                }
                 field("Payment "; Rec."Payment")
                 {
                     ToolTip = 'Specifies the value of the Payment  field.';
