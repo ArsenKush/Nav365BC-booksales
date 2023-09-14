@@ -9,11 +9,9 @@ codeunit 50101 BookPosting
 
     procedure PostBookSalesHeader(BookSalesHeader: Record BookSalesHeader)
     begin
-        if BookSalesHeader.Status <> BookSalesHeader.Status::Release then
-            Error('Error Message');
-
-        PostBookSalesInvoice(BookSalesHeader);
+        BookSalesHeader.TestField(Status, BookSalesHeader.Status::Release);
         PostBookSalesShipment(BookSalesHeader);
+        PostBookSalesInvoice(BookSalesHeader);
         DeleteBookSalesHeader(BookSalesHeader);
     end;
 
