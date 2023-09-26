@@ -1,9 +1,7 @@
-table 50101 BookSalesLine
+table 50107 NavigationDialogT
 {
-    Caption = 'Book Sales Line';
+    Caption = 'Navigation Dialog T.';
     DataClassification = CustomerContent;
-    LookupPageId = BookSalesLine;
-    DrillDownPageId = BookSalesLine;
 
     fields
     {
@@ -11,11 +9,15 @@ table 50101 BookSalesLine
         {
             Caption = 'Order No.';
         }
-        field(2; "Line No."; Integer)
+        field(2; "Customer No."; Code[20])
         {
-            Caption = 'Line No.';
+            Caption = 'Customer No.';
         }
-        field(10; "Item No."; Code[20])
+        field(3; "Customer Name"; Text[100])
+        {
+            Caption = 'Customer Name';
+        }
+        field(4; "Item No."; Code[20])
         {
             Caption = 'Item No.';
             TableRelation = Item."No.";
@@ -28,11 +30,11 @@ table 50101 BookSalesLine
                 "Item Name" := Item.Description;
             end;
         }
-        field(11; "Item Name"; Text[100])
+        field(5; "Item Name"; Text[100])
         {
             Caption = 'Item Name';
         }
-        field(35; "Price"; Decimal)
+        field(6; Price; Decimal)
         {
             Caption = 'Price';
             trigger OnValidate()
@@ -40,7 +42,7 @@ table 50101 BookSalesLine
                 CalcTotalAmount();
             end;
         }
-        field(13; Quantity; Decimal)
+        field(7; Quantity; Decimal)
         {
             Caption = 'Quantity';
             trigger OnValidate()
@@ -48,7 +50,7 @@ table 50101 BookSalesLine
                 CalcTotalAmount();
             end;
         }
-        field(14; "Discount %"; Decimal)
+        field(8; "Discount %"; Decimal)
         {
             Caption = 'Discount %';
             trigger OnValidate()
@@ -56,45 +58,23 @@ table 50101 BookSalesLine
                 CalcTotalAmount();
             end;
         }
-        field(15; "Line Amount"; Decimal)
+        field(9; "Line Amount"; Decimal)
         {
             Editable = false;
             Caption = 'Line Amount';
         }
-        field(16; "Customer No."; Code[20])
-        {
-            Caption = 'Customer No.';
-            TableRelation = Customer."No.";
-        }
     }
     keys
     {
-        key(PK; "Order No.", "Line No.")
+        key(PK; "Order No.")
         {
             Clustered = true;
         }
-
     }
-
-    trigger OnInsert()
-    var
-        BookSalesLine: Record BookSalesLine;
-        BookSalesHeader: Record BookSalesHeader;
-    begin
-        if Rec."Line No." = 0 then begin
-            BookSalesLine.Reset();
-            BookSalesLine.SetRange("Order No.", Rec."Order No.");
-            if BookSalesLine.FindLast() then
-                Rec."Line No." := BookSalesLine."Line No." + 10000
-            else
-                Rec."Line No." := 10000;
-        end;
-
-        BookSalesHeader.Get(Rec."Order No.");
-        Rec.Validate("Customer No.", BookSalesHeader."Customer No.");
-    end;
-
     procedure CalcTotalAmount()
+    var
+        BookSalesHeader: Record BookSalesHeader;
+        BookSalesLine: Record BookSalesLine;
     begin
         "Line Amount" := Price * Quantity * (1 - ("Discount %" / 100));
     end;

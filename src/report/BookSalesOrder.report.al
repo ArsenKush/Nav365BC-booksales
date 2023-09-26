@@ -4,7 +4,7 @@ report 50100 BookSalesOrder
     Caption = 'BookSalesOrder';
     UsageCategory = None;
     DefaultLayout = "RDLC";
-    RDLCLayout = './src/layout/BookSalesOrder.rdl';
+    RDLCLayout = './src/report/layout/BookSalesOrder.rdl';
 
     dataset
     {
