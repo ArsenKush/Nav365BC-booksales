@@ -61,6 +61,11 @@ table 50101 BookSalesLine
             Editable = false;
             Caption = 'Line Amount';
         }
+        field(16; "Customer No."; Code[20])
+        {
+            Caption = 'Customer No.';
+            TableRelation = Customer."No.";
+        }
     }
     keys
     {
@@ -74,6 +79,7 @@ table 50101 BookSalesLine
     trigger OnInsert()
     var
         BookSalesLine: Record BookSalesLine;
+        BookSalesHeader: Record BookSalesHeader;
     begin
         if Rec."Line No." = 0 then begin
             BookSalesLine.Reset();
@@ -84,6 +90,8 @@ table 50101 BookSalesLine
                 Rec."Line No." := 10000;
         end;
 
+        BookSalesHeader.Get(Rec."Order No.");
+        Rec.Validate("Customer No.", BookSalesHeader."Customer No.");
     end;
 
     procedure CalcTotalAmount()
