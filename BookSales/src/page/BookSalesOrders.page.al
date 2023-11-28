@@ -1,18 +1,18 @@
-page 50101 BookSalesCard
+page 50100 BookSalesOrders
 {
     ApplicationArea = All;
-    Caption = 'Book Sales Card';
-    PageType = Card;
+    Caption = 'Book Sales Orders';
+    PageType = List;
     SourceTable = BookSalesHeader;
+    UsageCategory = Documents;
+    CardPageId = BookSalesCard;
 
     layout
     {
         area(content)
         {
-            group(General)
+            repeater(General)
             {
-                Caption = 'General';
-
                 field("Order No."; Rec."Order No.")
                 {
                     ToolTip = 'Specifies the value of the Order No. field.';
@@ -25,11 +25,16 @@ page 50101 BookSalesCard
                 {
                     ToolTip = 'Specifies the value of the Customer Name field.';
                 }
-                field("Payment "; Rec."Payment ")
+                field("TotalAmount"; Rec.TotalAmount)
+                {
+                    Caption = 'Total Amount';
+                    ToolTip = 'Specifies the value of the Total Amount field.';
+                }
+                field("Payment "; Rec."Payment")
                 {
                     ToolTip = 'Specifies the value of the Payment  field.';
                 }
-                field("Document data"; Rec."Document data")
+                field("Document data"; Rec."Document Date")
                 {
                     ToolTip = 'Specifies the value of the Document data field.';
                 }
@@ -37,11 +42,6 @@ page 50101 BookSalesCard
                 {
                     ToolTip = 'Specifies the value of the Status field.';
                 }
-            }
-            part(PartName; BookSalesLine)
-            {
-                Caption = 'Book Sales Line';
-                SubPageLink = "Order No." = field("Order No.");
             }
         }
     }
