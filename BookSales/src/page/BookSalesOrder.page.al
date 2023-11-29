@@ -1,7 +1,7 @@
-page 50101 BookSalesCard
+page 50101 BookSalesOrder
 {
     ApplicationArea = All;
-    Caption = 'Book Sales Card';
+    Caption = 'Book Sales Order';
     PageType = Card;
     SourceTable = BookSalesHeader;
 
@@ -69,7 +69,7 @@ page 50101 BookSalesCard
                     }
                 }
             }
-            part(PartName; BookSalesLine)
+            part(PartName; BookSalesOrderLinesPart)
             {
                 Caption = 'Book Sales Line';
                 SubPageLink = "Order No." = field("Order No.");
@@ -162,7 +162,7 @@ page 50101 BookSalesCard
 
 
     var
-        BookLibrary: Codeunit BookLibrary;
+        BookLibrary: Codeunit BookRelease;
 
     local procedure ReleaseOnPage()
     begin

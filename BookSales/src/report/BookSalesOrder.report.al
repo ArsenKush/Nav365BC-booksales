@@ -1,4 +1,4 @@
-report 50100 BookSalesOrder
+report 50101 BookSalesOrder
 {
     ApplicationArea = All;
     Caption = 'BookSalesOrder';
@@ -11,7 +11,6 @@ report 50100 BookSalesOrder
         dataitem(BookSalesHeader; BookSalesHeader)
         {
             RequestFilterFields = "Order No.", "Customer No.";
-
             column(OrderNo; "Order No.")
             { }
             column(CustomerNo; "Customer No.")
@@ -32,9 +31,6 @@ report 50100 BookSalesOrder
             dataitem(BookSalesLine; BookSalesLine)
             {
                 DataItemLink = "Order No." = field("Order No.");
-
-                // column(Order_No_; "Order No.")
-                // { }
                 column(LineItemNo; "Item No.")
                 { }
                 column(LineLineNo; "Line No.")

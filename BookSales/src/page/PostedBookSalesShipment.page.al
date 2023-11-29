@@ -1,9 +1,9 @@
-page 50109 BookPostedSalesShipment
+page 50109 PostedBookSalesShipment
 {
     ApplicationArea = All;
-    Caption = 'Book Posted Sales Shipment';
+    Caption = 'Posted Book Sales Shipment';
     PageType = Card;
-    SourceTable = BookPostedSalesShipmentHeader;
+    SourceTable = PostedBookSalesShipmentHeader;
 
     layout
     {
@@ -58,7 +58,7 @@ page 50109 BookPostedSalesShipment
                     ToolTip = 'Specifies the value of the No. Series field.';
                 }
             }
-            part(PartName; BookPostedSalesShipmentLine)
+            part(PartName; PostedBookSalesShipmentLine)
             {
                 Caption = 'Shipment Line';
                 SubPageLink = "Shipment No." = field("Shipment No.");
