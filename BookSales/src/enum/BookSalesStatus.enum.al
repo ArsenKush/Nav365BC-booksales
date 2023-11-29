@@ -1,4 +1,4 @@
-enum 50100 BookSalesStatus
+enum 50101 BookSalesStatus
 {
     Extensible = true;
 

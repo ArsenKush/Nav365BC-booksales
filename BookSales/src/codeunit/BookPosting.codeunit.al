@@ -9,10 +9,12 @@ codeunit 50101 BookPosting
 
     procedure PostBookSalesHeader(BookSalesHeader: Record BookSalesHeader)
     begin
+        OnBeforePosting(BookSalesHeader);
         BookSalesHeader.TestField(Status, BookSalesHeader.Status::Release);
         PostBookSalesShipment(BookSalesHeader);
         PostBookSalesInvoice(BookSalesHeader);
         DeleteBookSalesHeader(BookSalesHeader);
+        OnAfterPosting(BookSalesHeader);
     end;
 
     local procedure DeleteBookSalesHeader(BookSalesHeader: Record BookSalesHeader)
@@ -28,8 +30,8 @@ codeunit 50101 BookPosting
 
     local procedure PostBookSalesInvoice(BookSalesHeader: Record BookSalesHeader)
     var
-        BookPostedSalesInvoiceHeader: Record BookPostedSalesInvoiceHeader;
-        BookPostedSelaeInvoiceLine: Record BookPostedSalesInvoiceLine;
+        BookPostedSalesInvoiceHeader: Record PostedBookSalesInvoiceHeader;
+        BookPostedSelaeInvoiceLine: Record PostedBookSalesInvoiceLine;
         BookSalesLine: Record BookSalesLine;
     begin
         BookPostedSalesInvoiceHeader.Init();
@@ -51,8 +53,8 @@ codeunit 50101 BookPosting
 
     local procedure PostBookSalesShipment(BookSalesHeader: Record BookSalesHeader)
     var
-        BookPostedSalesShipmentHeader: Record BookPostedSalesShipmentHeader;
-        BookPostedSalesShipmentLine: Record BookPostedSalesShipmentLine;
+        BookPostedSalesShipmentHeader: Record PostedBookSalesShipmentHeader;
+        BookPostedSalesShipmentLine: Record PostedBookSalesShipmentLine;
         BookSalesLine: Record BookSalesLine;
     begin
         BookPostedSalesShipmentHeader.Init();
@@ -70,6 +72,17 @@ codeunit 50101 BookPosting
                 BookPostedSalesShipmentLine."Shipment No." := BookPostedSalesShipmentHeader."Shipment No.";
                 BookPostedSalesShipmentLine.Insert(true);
             until BookSalesLine.Next() = 0;
+
+    end;
+
+    [IntegrationEvent(false, false)]
+    local procedure OnBeforePosting(var BookSalesHeader: Record BookSalesHeader)
+    begin
+    end;
+
+    [IntegrationEvent(false, false)]
+    local procedure OnAfterPosting(var BookSalesHeader: Record BookSalesHeader)
+    begin
     end;
 
 }

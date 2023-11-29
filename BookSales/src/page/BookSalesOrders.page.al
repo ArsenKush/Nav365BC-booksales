@@ -1,11 +1,12 @@
-page 50100 BookSalesOrders
+page 50111 BookSalesOrders
 {
     ApplicationArea = All;
     Caption = 'Book Sales Orders';
     PageType = List;
     SourceTable = BookSalesHeader;
     UsageCategory = Documents;
-    CardPageId = BookSalesCard;
+    CardPageId = BookSalesOrder;
+    Editable = false;
 
     layout
     {

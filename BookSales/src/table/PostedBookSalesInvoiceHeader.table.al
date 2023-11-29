@@ -1,6 +1,6 @@
-table 50102 BookPostedSalesInvoiceHeader
+table 50102 PostedBookSalesInvoiceHeader
 {
-    Caption = 'Book Posted Sales Invoice Header';
+    Caption = 'Posted Book Sales Invoice Header';
     DataClassification = CustomerContent;
 
     fields

@@ -1,4 +1,4 @@
-table 50100 BookSalesHeader
+table 50108 BookSalesHeader
 {
     Caption = 'Book Sales Header';
     DataClassification = CustomerContent;

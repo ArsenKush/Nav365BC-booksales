@@ -1,6 +1,6 @@
-table 50105 BookPostedSalesShipmentHeader
+table 50105 PostedBookSalesShipmentHeader
 {
-    Caption = ' Book Posted Sales Shipment Header';
+    Caption = 'Posted Book Sales Shipment Header';
     DataClassification = CustomerContent;
 
     fields

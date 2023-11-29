@@ -1,17 +1,15 @@
-page 50104 BookPostedSalesInvoices
+page 50106 PostedBookSalesInvoice
 {
     ApplicationArea = All;
-    Caption = 'Book Posted Sales Invoices';
-    PageType = List;
-    SourceTable = BookPostedSalesInvoiceHeader;
-    UsageCategory = Documents;
-    CardPageId = BookPostedSalesInvoice;
+    Caption = 'Posted Book Sales Invoice';
+    PageType = Card;
+    SourceTable = PostedBookSalesInvoiceHeader;
 
     layout
     {
         area(content)
         {
-            repeater(General)
+            group(General)
             {
                 Caption = 'General';
 
@@ -60,6 +58,12 @@ page 50104 BookPostedSalesInvoices
                     ToolTip = 'Specifies the value of the No. Series field.';
                 }
             }
+            part(PartName; PostedBookSalesInvoiceLine)
+            {
+                Caption = 'Invoice Line';
+                SubPageLink = "Invoice No." = field("Invoice No.");
+            }
+
         }
     }
 }

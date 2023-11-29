@@ -1,7 +1,7 @@
-page 50110 NavigatioDialogWizard
+page 50110 NavigationDialogWizard
 {
     ApplicationArea = All;
-    Caption = 'Navigatio Dialog Wizard';
+    Caption = 'Navigation Dialog Wizard';
     PageType = NavigatePage;
     SourceTable = NavigationDialogT;
     SourceTableTemporary = true;

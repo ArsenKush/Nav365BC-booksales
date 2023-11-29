@@ -1,9 +1,9 @@
-page 50105 BookPostedSalesInvoiceLine
+page 50108 PostedBookSalesShipmentLine
 {
     ApplicationArea = All;
-    Caption = 'Book Posted Sales Invoice Line';
+    Caption = 'Posted Book Sales Shipment Line';
     PageType = ListPart;
-    SourceTable = BookPostedSalesInvoiceLine;
+    SourceTable = PostedBookSalesShipmentLine;
 
     layout
     {
@@ -11,7 +11,7 @@ page 50105 BookPostedSalesInvoiceLine
         {
             repeater(General)
             {
-                field("Order No."; Rec."Invoice No.")
+                field("Order No."; Rec."Shipment No.")
                 {
                     ToolTip = 'Specifies the value of the Order No. field.';
                 }

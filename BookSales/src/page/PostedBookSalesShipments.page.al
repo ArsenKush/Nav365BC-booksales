@@ -1,11 +1,11 @@
-page 50107 BookPostedSalesShipments
+page 50107 PostedBookSalesShipments
 {
     ApplicationArea = All;
-    Caption = 'Book Posted Sales Shipments';
+    Caption = 'Posted Book Sales Shipments';
     PageType = List;
-    SourceTable = BookPostedSalesShipmentHeader;
+    SourceTable = PostedBookSalesShipmentHeader;
     UsageCategory = Documents;
-    CardPageId = BookPostedSalesShipment;
+    CardPageId = PostedBookSalesShipment;
 
     layout
     {

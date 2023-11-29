@@ -1,13 +1,13 @@
-table 50104 BookPostedSalesInvoiceLine
+table 50106 PostedBookSalesShipmentLine
 {
-    Caption = 'Book Posted Sales Invoice Line';
-    DataClassification = ToBeClassified;
+    Caption = 'Posted Book Sales Shipment Line';
+    DataClassification = CustomerContent;
 
     fields
     {
-        field(1; "Invoice No."; Code[20])
+        field(1; "Shipment No."; Code[20])
         {
-            Caption = 'Invoice No.';
+            Caption = 'Shipment No.';
         }
         field(2; "Line No."; Integer)
         {
@@ -40,7 +40,7 @@ table 50104 BookPostedSalesInvoiceLine
     }
     keys
     {
-        key(PK; "Invoice No.", "Line No.")
+        key(PK; "Shipment No.", "Line No.")
         {
             Clustered = true;
         }
